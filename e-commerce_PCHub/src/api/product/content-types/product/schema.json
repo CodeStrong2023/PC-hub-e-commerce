@@ -12,17 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "productName": {
+    "NombreProducto": {
       "type": "string"
     },
     "slug": {
-      "type": "uid",
-      "targetField": "productName"
+      "type": "uid"
     },
-    "description": {
+    "descripcion": {
       "type": "text"
     },
-    "images": {
+    "imagenes": {
       "type": "media",
       "multiple": true,
       "required": false,
@@ -33,17 +32,30 @@
         "audios"
       ]
     },
-    "active": {
+    "activo": {
       "type": "boolean",
       "default": true
     },
-    "price": {
+    "precio": {
       "type": "decimal"
     },
-    "article": {
+    "isFeature": {
+      "type": "boolean"
+    },
+    "categoria": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::article.article"
+      "target": "api::categoria.categoria"
+    },
+    "Marca": {
+      "type": "enumeration",
+      "enum": [
+        "Asus",
+        "Samsung",
+        "Logitech",
+        "JBL"
+      ],
+      "default": "Samsung"
     }
   }
 }

@@ -579,6 +579,38 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCategoriaCategoria extends Struct.CollectionTypeSchema {
+  collectionName: 'categorias';
+  info: {
+    singularName: 'categoria';
+    pluralName: 'categorias';
+    displayName: 'Categoria';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categoriaNombre: Schema.Attribute.String;
+    imagenesCategoria: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    slug: Schema.Attribute.UID<'categoriaNombre'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::categoria.categoria'
+    >;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -647,16 +679,24 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    productName: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'productName'>;
-    description: Schema.Attribute.Text;
-    images: Schema.Attribute.Media<
+    NombreProducto: Schema.Attribute.String;
+    slug: Schema.Attribute.UID;
+    descripcion: Schema.Attribute.Text;
+    imagenes: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
-    active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    price: Schema.Attribute.Decimal;
-    article: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
+    activo: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    precio: Schema.Attribute.Decimal;
+    isFeature: Schema.Attribute.Boolean;
+    categoria: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::categoria.categoria'
+    >;
+    Marca: Schema.Attribute.Enumeration<
+      ['Asus', 'Samsung', 'Logitech', 'JBL']
+    > &
+      Schema.Attribute.DefaultTo<'Samsung'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -1050,6 +1090,7 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
+      'api::categoria.categoria': ApiCategoriaCategoria;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
       'api::product.product': ApiProductProduct;
