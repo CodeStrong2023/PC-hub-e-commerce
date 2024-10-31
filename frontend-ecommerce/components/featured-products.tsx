@@ -10,11 +10,15 @@ import { useRouter } from "next/navigation";
 import SkeletonSchema from "./skeletonSchema";
 import { ProductType } from "@/types/product";
 import IconButton from "./icon-button";
+import { useCart } from "@/hooks/use-cart";
 
 
 const FeaturedProducts = () => {
     const { loading, result }: ResponseType = useGetFeatureProducts()
     const router = useRouter()
+    const { addItem } = useCart()
+
+
     return (
         <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
             <h3 className="px-6 text-3xl sm:pb-8">Productos destacados</h3>
@@ -44,7 +48,7 @@ const FeaturedProducts = () => {
                                                             className="text-gray-600"
                                                         />
                                                         <IconButton
-                                                            onClick={() => router.push(`product/${slug}`)}
+                                                            onClick={() => addItem(product)}
                                                             icon={<ShoppingCart size={20} />}
                                                             className="text-gray-600"
                                                         />
