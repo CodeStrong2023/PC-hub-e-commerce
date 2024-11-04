@@ -21,39 +21,29 @@ const MenuList = () => {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Sobre nosotros</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      Quienes somos?
-                    </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Somos una tienda con más de 17 años dentro del rubro tecnológico en
-                      Argentina. Nos dedicamos a la venta de computadoras, notebooks, hardware
-                      y productos periféricos para consumidores particulares, empresas o
-                      revendedores.
-                      Marcas como Asus, SkullCandy, MSI, Gigabyte, Kingston, Intel o Nvidia
-                      nos han hecho sus representantes oficiales
-                      en el país.
-                      En PCHub encontrarás todo lo que compone la PC de tus sueños.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-              <ListItem href="/shop" title="Tienda">
-                Accede a toda tu información, tus pedidos y mucho más
-              </ListItem>
-              <ListItem href="/offers" title="Ofertas">
-                Sección dedicada a promociones y descuentos especiales.
-              </ListItem>
-              <ListItem href="/accesories" title="Accesorios">
-                Productos complementarios como cables, accesorios para computadoras, etc.
-              </ListItem>
-            </ul>
+
+
+            <NavigationMenuLink asChild>
+              <a
+                className="flex h-full w-80 select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                href="/"
+              >
+                <div className="mb-2 mt-4 text-lg font-medium">
+                  Quienes somos?
+                </div>
+                <p className="text-sm leading-tight text-muted-foreground">
+                  Somos una tienda con más de 17 años dentro del rubro tecnológico en
+                  Argentina. Nos dedicamos a la venta de computadoras, notebooks, hardware
+                  y productos periféricos para consumidores particulares, empresas o
+                  revendedores.
+                  Marcas como Asus, SkullCandy, MSI, Gigabyte, Kingston, Intel o Nvidia
+                  nos han hecho sus representantes oficiales
+                  en el país.
+                  En PCHub encontrarás todo lo que compone la PC de tus sueños.
+                </p>
+              </a>
+            </NavigationMenuLink>
+
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -72,13 +62,7 @@ const MenuList = () => {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/accesories" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Accesorios
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+
       </NavigationMenuList>
     </NavigationMenu>
   )
@@ -87,43 +71,40 @@ const MenuList = () => {
 export default MenuList;
 
 const components: { title: string; href: string; description: string }[] = [
-    {
-      title: "Armá tu PC",
-      href: "/docs/primitives/alert-dialog",
-      description:
-        "A modal dialog that interrupts the user with important content and expects a response.",
-    },
-    {
-      title: "PC Armadas",
-      href: "/docs/primitives/hover-card",
-      description:
-        "For sighted users to preview content available behind a link.",
-    },
-    {
-      title: "Hardware",
-      href: "/docs/primitives/progress",
-      description:
-        "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-    },
-    {
-      title: "Periféricos",
-      href: "/docs/primitives/scroll-area",
-      description: "Visually or semantically separates content.",
-    },
-    {
-      title: "Notebooks",
-      href: "/docs/primitives/tabs",
-      description:
-        "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-      title: "Monitores",
-      href: "/docs/primitives/tooltip",
-      description:
-        "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-  ]
+
+  {
+    title: "Armá tu PC",
+    href: "http://localhost:3000/category/arma-tu-pc",
+    description: "Explora nuestra guía personalizada y selecciona cada componente para armar la PC de tus sueños con total libertad y compatibilidad garantizada.",
+  },
+  {
+    title: "PC Armadas",
+    href: "http://localhost:3000/category/pc-armadas",
+    description: "Descubre nuestra amplia gama de PC de escritorio preconfiguradas, listas para ofrecerte el mejor rendimiento según tus necesidades.",
+  },
+  {
+    title: "Hardware",
+    href: "http://localhost:3000/category/hardware",
+    description: "Encuentra los mejores componentes de hardware para optimizar y actualizar el rendimiento de tu computadora.",
+  },
+  {
+    title: "Periféricos",
+    href: "http://localhost:3000/category/perifericos",
+    description: "Completa tu experiencia con una variedad de periféricos esenciales, desde teclados y ratones hasta auriculares y más.",
+  },
+  {
+    title: "Notebooks",
+    href: "http://localhost:3000/category/notebooks",
+    description: "Explora nuestra selección de notebooks diseñadas para brindarte portabilidad, potencia y rendimiento en cualquier lugar.",
+  },
+  {
+    title: "Monitores",
+    href: "http://localhost:3000/category/monitores",
+    description: "Elige entre una variedad de monitores de alta calidad para disfrutar de la mejor experiencia visual, ya sea para gaming o trabajo.",
+  },
   
+]
+
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">

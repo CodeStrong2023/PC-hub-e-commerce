@@ -1,10 +1,10 @@
 export function formatPrice(price: number) {
-    const priceFormated = new Intl.NumberFormat('es-ES', {
-        style: "currency",
-        currency: "EUR"
-    })
-
-    const finalPrice = priceFormated.format(price)
-
-    return finalPrice
-}
+    const priceFormatted = new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
+      currencyDisplay: 'symbol',
+    });
+  
+    const finalPrice = priceFormatted.format(price);
+    return finalPrice;
+  }

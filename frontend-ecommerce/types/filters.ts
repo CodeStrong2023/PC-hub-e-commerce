@@ -1,15 +1,17 @@
+
 export type FilterTypes = {
-    result: ResultFilterTypes | null;
+    result : ResultFilterTypes | null;
     loading: boolean;
-    error: string;
+    error: string
 }
 
 export type ResultFilterTypes = {
     schema: {
         attributes: {
-            origin: {
-                enum: any;
+            Marca:{
+                enum:string
             }
         }
+
     }
 }

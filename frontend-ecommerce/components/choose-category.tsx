@@ -6,7 +6,6 @@ import { CategoryType } from '@/types/category';
 const ChooseCategory = () => {
     const { result, loading }: ResponseType = useGetCategory();
 
-    console.log(result)
     return (
         <div className='max-w-6xl py-4 mx-auto sm:py-16 sm:px-24'>
             <h3 className='px-6 pb-4 text-3xl'>Elige una categoria favorita</h3>
@@ -16,7 +15,7 @@ const ChooseCategory = () => {
                 result.map((category: CategoryType) => (
                     <Link
                     key={category.id}
-                    href={`/categorias/${category.slug}`}
+                    href={`/category/${category.slug}`}
                     className='relative max-w-xs mx-auto overflow-hidden bg-no-repeat bg-cover rounded-lg'
                     >
                         <img 

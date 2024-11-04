@@ -34,7 +34,7 @@ export default function Page() {
         console.error("Error al manejar la compra:", error);
       }
     };
-
+    
     const createPreference = async () => {
       try {
         const itemsToSend = items.map(item => ({
@@ -78,7 +78,7 @@ export default function Page() {
                             <Button className="w-full" onClick={handleBuy}>Comprar</Button>
                         </div>
                         {/* Contenedor para el botón de pago */}
-                        {preferenceId &&
+                        {preferenceId && 
                         <Wallet initialization={{ preferenceId: preferenceId }} customization={{ texts: { valueProp: 'smart_option' } }} />}
                     </div>
                 </div>

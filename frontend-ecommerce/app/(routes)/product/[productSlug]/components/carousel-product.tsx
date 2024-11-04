@@ -1,33 +1,30 @@
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
 interface CarouselProductProps {
-    images: {
-        data: {
-            id: number;
-            attributes: {
-                url: string;
+    data: {
+        id: string
+        imagenes: {
+            formats: {
+                small: {
+                    url: string
+                }
             }
-        }[];
-    };
+        }[]
+    }
 }
 
 const CarouselProduct = (props: CarouselProductProps) => {
-    const {images} = props
+    const { data } = props
     return (
         <div className="sm:px-16">
             <Carousel>
                 <CarouselContent>
-                    {images.data.map((image) => (
-                        <CarouselItem key={image.id}>
-                            <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.attributes.url}`}
-                            alt="Image product" 
-                            className="rounded-lg"
-                            />
+                    {data.imagenes.map((image) => (
+                        <CarouselItem key={10}>
+                            <img src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.formats.small.url}`} alt="Image product" className='rounded-lg' />
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
             </Carousel>
         </div>
     )

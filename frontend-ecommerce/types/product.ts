@@ -4,7 +4,7 @@ export type ProductType = {
   slug: string;
   descripcion: string;
   activo: boolean | null;
-  precio: number | null;
+  precio: number ;
   isFeature: boolean;
   Marca:string;
   imagenes: {
