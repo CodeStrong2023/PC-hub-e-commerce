@@ -1,0 +1,14 @@
+{
+    "client": "postgres",
+    "connection": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "ecommerce-PCHUB",
+      "user": "postgres",
+      "password": "root"
+    },
+    "migrations": {
+      "runOnStart": true,
+      "backup": "db_backup.sql"
+    }
+  }

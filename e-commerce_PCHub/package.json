@@ -12,15 +12,21 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@mercadopago/sdk-react": "^0.0.19",
+    "@strapi/helper-plugin": "^4.25.12",
     "@strapi/plugin-cloud": "5.0.2",
-    "@strapi/plugin-users-permissions": "5.0.2",
-    "@strapi/strapi": "^5.0.2",
+    "@strapi/plugin-users-permissions": "^5.1.0",
+    "@strapi/upload": "^5.1.0",
+    "@strapi/utils": "^5.1.0",
     "better-sqlite3": "9.4.3",
     "fs-extra": "^10.0.0",
     "mime-types": "^2.1.27",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "pg": "^8.13.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^6.0.0",
+    "sharp": "^0.33.5",
+    "strapi-provider-upload-google-drive": "^0.1.4",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {

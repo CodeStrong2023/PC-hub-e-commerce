@@ -16,7 +16,8 @@
       "type": "string"
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "NombreProducto"
     },
     "descripcion": {
       "type": "text"
