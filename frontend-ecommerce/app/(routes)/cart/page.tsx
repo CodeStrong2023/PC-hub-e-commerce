@@ -9,7 +9,7 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import axios from 'axios'
 import { title } from 'process';
 import CartItem from './componenet/cart-item';
-const YOUR_PUBLIC_KEY = 'TEST-c0e65b66-c1f3-4cd7-86f5-1f047ed862a8';
+const YOUR_PUBLIC_KEY = `${process.env.NEXT_PUBLIC_MP_KEY}`;
 
 
 
