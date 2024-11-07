@@ -1,5 +1,3 @@
-
-
 @echo off
 
 :: Solicitar nombre de usuario y contraseña de PostgreSQL
@@ -9,6 +7,7 @@ set /p PGPASSWORD=Ingrese la contraseña del usuario %PGUSER% (por defecto: admi
 :: Establecer valores por defecto si no se ingresan
 if "%PGUSER%"=="" set PGUSER=root
 if "%PGPASSWORD%"=="" set PGPASSWORD=admin
+
 :: Configurar archivo .env
 (
 echo HOST=0.0.0.0
@@ -37,73 +36,32 @@ echo DATABASE_FILENAME=.tmp/data.db
 ) > .env
 
 echo Archivo .env configurado correctamente.
+
 :: Crear base de datos, ignorando errores si ya existe
-psql -U %PGUSER% -d postgres -c "CREATE DATABASE \"ecommerce-PCHUB\"" > nul 2>&1
-if %errorlevel% equ 0 (
-    echo Base de datos ecommerce-PCHUB creada.
-) else (
-    echo Base de datos ecommerce-PCHUB ya existe.
-)
+call psql -U %PGUSER% -d postgres -c "CREATE DATABASE \"ecommerce-PCHUB\"" > nul 2>&1 || echo Error al crear base de datos, continuando...
 
 :: Pausa breve para asegurar que la base de datos esté lista
-ping localhost -n 3 > nul
+call ping localhost -n 3 > nul || echo Error al conectar a la base de datos, continuando...
 
 :: Conectar a la base de datos creada e ignorar errores
-psql -U %PGUSER% -d ecommerce-PCHUB -c "SELECT 1" > nul 2>&1
+call psql -U %PGUSER% -d ecommerce-PCHUB -c "SELECT 1" > nul 2>&1 || echo Error al conectar a la base de datos, continuando...
 
 :: Descargar backup de base de datos desde Google Drive
-curl -L -v -o db_backup.sql "https://drive.google.com/uc?export=download&id=1lI1ZHsVU6-mKspYwTd-IMZGI-M2ihDDq"
-if %errorlevel% neq 0 (
-    echo Error al descargar backup de base de datos
-    pause
-    exit /b 1
-) else if not exist db_backup.sql (
-    echo Error: Archivo de backup no descargado
-    pause
-    exit /b 1
-)
-echo Descarga de backup finalizada.
+call curl -L -v -o db_backup.sql "https://drive.google.com/uc?export=download&id=1lI1ZHsVU6-mKspYwTd-IMZGI-M2ihDDq" || echo Error al descargar backup de base de datos, continuando...
 
 :: Restaurar backup de base de datos
-pg_restore -U %PGUSER% -d ecommerce-PCHUB -c db_backup.sql
-if %errorlevel% equ 0 (
-    echo Restauracion de backup finalizada.
-) else (
-    echo Error al restaurar backup de base de datos: %errorlevel%
-    pause
-    exit /b 1
-)
-
-
-
+call pg_restore -U %PGUSER% -d ecommerce-PCHUB -c db_backup.sql || echo Error al restaurar backup de base de datos, continuando...
 
 :: Instalar dependencias de Strapi
-npm install --force
-if %errorlevel% neq 0 (
-    echo Error al instalar dependencias de Strapi
-    pause
-    exit /b 1
-)
-echo Instalacion de dependencias finalizada.
-
+call npm install --force || echo Error al instalar dependencias de Strapi, continuando...
 
 :: Construir proyecto Strapi
-npm run build
-if %errorlevel% neq 0 (
-    echo Error al construir proyecto Strapi
-    pause
-    exit /b 1
-)
-echo Construccion del proyecto finalizada.
-:: Reconstruir proyecto Strapi
-npx strapi build --clean
-if %errorlevel% neq 0 (
-    echo Error al reconstruir proyecto Strapi
-    pause
-    exit /b 1
-)
-echo Reconstruccion del proyecto finalizada.
+call npm run build || echo Error al construir proyecto Strapi, continuando...
 
+:: Reconstruir proyecto Strapi
+call npx strapi build --clean || echo Error al reconstruir proyecto Strapi, continuando...
 
 :: Iniciar Strapi
-npm run start
+call npm run start || echo Error al iniciar Strapi, continuando...
+
+echo Ejecucion finalizada.
